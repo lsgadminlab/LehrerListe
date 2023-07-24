@@ -1,4 +1,11 @@
 export const TicketsList = () => {
+  const currentDate = new Date();
+  const TimeStamp =
+    currentDate.getDate() +
+    "-" +
+    (currentDate.getMonth() + 1) +
+    "-" +
+    currentDate.getFullYear();
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -14,24 +21,24 @@ export const TicketsList = () => {
         <tbody>
           {/* row 1 */}
           <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
+            <th>1216</th>
+            <td>KUW</td>
+            <td>Tastatur am Computer zerstört</td>
+            <td>{TimeStamp}</td>
           </tr>
           {/* row 2 */}
           <tr className="hover">
-            <th>2</th>
-            <td>Hart Hagerty</td>
-            <td>Desktop Support Technician</td>
-            <td>Purple</td>
+            <th>4102</th>
+            <td>BHG</td>
+            <td>Monitor am LehrerPC zerkratzt</td>
+            <td>{TimeStamp}</td>
           </tr>
           {/* row 3 */}
           <tr>
-            <th>3</th>
-            <td>Brice Swyre</td>
-            <td>Tax Accountant</td>
-            <td>Red</td>
+            <th>2103</th>
+            <td>MUN</td>
+            <td>LAN funktioniert nicht</td>
+            <td>{TimeStamp}</td>
           </tr>
         </tbody>
       </table>
