@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
-  const [windowWidth, setWindowSize] = useState(window.innerWidth);
-
   const firstText = "Neues Ticket";
   const secondText = "Ticket Liste";
 
-  window.addEventListener("resize", () => {
-    setWindowSize(window.innerWidth);
-  });
+  const { push } = useRouter();
+
+  function handleSecondTextClick() {
+    push("/ticketList");
+  }
 
   return (
     <div className="navbar bg-base-100">
@@ -39,7 +40,7 @@ export const Navbar = () => {
             <li>
               <a>{firstText}</a>
             </li>
-            <li>
+            <li onClick={handleSecondTextClick}>
               <a>{secondText}</a>
             </li>
           </ul>
@@ -51,7 +52,7 @@ export const Navbar = () => {
           <li>
             <a>{firstText}</a>
           </li>
-          <li>
+          <li onClick={handleSecondTextClick}>
             <a>{secondText}</a>
           </li>
         </ul>
