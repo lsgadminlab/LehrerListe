@@ -1,5 +1,10 @@
+"use client";
+
+import ModalTextInputField from "./components/ModalTextInput";
+
 export default function Home() {
   return (
+    <>
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content text-center">
         <div className="max-w-md">
@@ -13,5 +18,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+      <ModalTextInputField name="Test" onChange= {()=>{}} value="Test"/>
+    </>
   );
 }
