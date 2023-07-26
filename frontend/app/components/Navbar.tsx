@@ -13,6 +13,10 @@ export const Navbar = () => {
     push("/ticketList");
   }
 
+  function handeHomeClick() {
+    push("/");
+  }
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -45,7 +49,12 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Lehrerliste</a>
+        <a
+          className="btn btn-ghost normal-case text-xl"
+          onClick={handeHomeClick}
+        >
+          Lehrerliste
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 content-center">
@@ -57,9 +66,7 @@ export const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Abmelden</a>
-      </div>
+      <div className="navbar-end"></div>
     </div>
   );
 };
