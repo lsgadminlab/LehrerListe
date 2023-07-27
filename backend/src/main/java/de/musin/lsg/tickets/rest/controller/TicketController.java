@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/tickets")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class TicketController {
     private TicketService ticketService;
     @GetMapping(path = "/")
@@ -26,5 +27,9 @@ public class TicketController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteTicket(@PathVariable Long id){
         ticketService.deleteTicket(id);
+    }
+    @PutMapping(path = "/{id}")
+    public Ticket putTicket(@RequestBody Ticket ticket, @PathVariable Long id){
+        return ticketService.updateTicket(ticket, id);
     }
 }

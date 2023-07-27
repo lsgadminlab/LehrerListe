@@ -16,4 +16,7 @@ public class Ticket {
     private String room;
     private String description;
     private Date created;
+    @Enumerated(value = EnumType.STRING)
+    private Priority priority;
+    private boolean done;
 }
