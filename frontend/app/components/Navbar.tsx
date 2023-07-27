@@ -1,12 +1,12 @@
 "use client";
 
+import ModalCreateTicket from "./ModalCreateTicket";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
-import ModalTextInputField from "./ModalTextInput";
 
 export const Navbar = () => {
-  const firstText = "Neues Ticket";
-  const secondText = "Ticket Liste";
+  const doneTicketsText = "Erledigte Tickets";
+  const openTicketsText = "Offene Tickets";
 
   const { push } = useRouter();
 
@@ -17,9 +17,12 @@ export const Navbar = () => {
       modalRef.current.openModal();
     }
   };
+  function handleopenTicketsClick() {
+    push("/openTickets");
+  }
 
-  function handleSecondTextClick() {
-    push("/ticketList");
+  function handledoneTicketsClick() {
+    push("/doneTickets");
   }
 
   function handeHomeClick() {
@@ -51,11 +54,11 @@ export const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li onClick={openModal}>
-                <a>{firstText}</a>
+              <li onClick={handledoneTicketsClick}>
+                <a>{doneTicketsText}</a>
               </li>
-              <li onClick={handleSecondTextClick}>
-                <a>{secondText}</a>
+              <li onClick={handleopenTicketsClick}>
+                <a>{openTicketsText}</a>
               </li>
             </ul>
           </div>
@@ -68,17 +71,23 @@ export const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 content-center">
-            <li onClick={() => openModal()}>
-              <a>{firstText}</a>
+            <li onClick={handledoneTicketsClick}>
+              <a>{doneTicketsText}</a>
             </li>
-            <li onClick={handleSecondTextClick}>
-              <a>{secondText}</a>
+            <li onClick={handleopenTicketsClick}>
+              <a>{openTicketsText}</a>
             </li>
           </ul>
         </div>
         <div className="navbar-end"></div>
       </div>
-      <ModalTextInputField
+      <button
+        className="btn btn-square fixed bottom-3 right-3 btn-primary z-10"
+        onClick={openModal}
+      >
+        +
+      </button>
+      <ModalCreateTicket
         name="Test"
         onChange={() => {}}
         value="Test"

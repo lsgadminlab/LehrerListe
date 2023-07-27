@@ -1,209 +1,41 @@
-const data = [
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-  {
-    roomNumber: 2103,
-    teacher: "MUN",
-    description: "LAN funktioniert nicht",
-    date: "21.06.2021",
-  },
-];
+import { Ticket } from "@/lib/types/ticket";
 
-export const TicketsList = () => {
-  return (
-    <div className="container mx-auto">
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>Room Number</th>
-            <th>Teacher</th>
-            <th>Description</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((ticket) => {
-            return tableRow(ticket);
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-interface tableRowProps {
-  roomNumber: number;
-  teacher: string;
-  description: string;
-  date: string;
+interface TicketsListProps {
+  tickets: Ticket[];
 }
 
-const tableRow = ({
-  roomNumber,
-  teacher,
-  description,
-  date,
-}: tableRowProps) => {
+export const TicketsList = ({ tickets }: TicketsListProps) => {
+  return (
+    <>
+      <div className="relative">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Room Number</th>
+              <th>Teacher</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Done</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tickets.map((ticket) => {
+              return tableRow(ticket);
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+};
+const tableRow = ({ room, teacher, description, created, done }: Ticket) => {
   return (
     <tr className="hover">
-      <th>{roomNumber}</th>
+      <th>{room}</th>
       <td>{teacher}</td>
       <td>{description}</td>
-      <td>{date}</td>
+      <td>{String(created)}</td>
+      <td>{String(done)}</td>
     </tr>
   );
 };

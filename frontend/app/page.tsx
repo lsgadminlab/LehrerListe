@@ -1,6 +1,7 @@
 "use client";
 
-import ModalTextInputField from "./components/ModalTextInput";
+import ModalCreateTicket from "./components/ModalCreateTicket";
+import ModalDetailedView from "./components/ModalDetailedView";
 import { useRef } from "react";
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero bg-base-200 h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Lehrer Liste</h1>
@@ -29,7 +30,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ModalTextInputField
+      <ModalCreateTicket
         name="Test"
         onChange={() => {}}
         value="Test"
