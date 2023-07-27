@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef } from "react";
 import ModalTextInputField from "./components/ModalTextInput";
+import { useRef } from "react";
 
 export default function Home() {
-  const modalRef = useRef();
+  const modalRef: any = useRef();
 
   const openModal = () => {
     if (modalRef.current) {

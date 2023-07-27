@@ -1,47 +1,209 @@
+const data = [
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+  {
+    roomNumber: 2103,
+    teacher: "MUN",
+    description: "LAN funktioniert nicht",
+    date: "21.06.2021",
+  },
+];
+
 export const TicketsList = () => {
-  const currentDate = new Date();
-  const TimeStamp =
-    currentDate.getDate() +
-    "-" +
-    (currentDate.getMonth() + 1) +
-    "-" +
-    currentDate.getFullYear();
   return (
-    <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
+    <div className="container mx-auto">
+      <table className="table w-full">
         <thead>
           <tr>
-            <th>Raumnummer</th>
-            <th>Lehrerkürzel</th>
-            <th>Beschreibung</th>
-            <th>Erstellungsdatum</th>
+            <th>Room Number</th>
+            <th>Teacher</th>
+            <th>Description</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
-          <tr>
-            <th>1216</th>
-            <td>KUW</td>
-            <td>Tastatur am Computer zerstört</td>
-            <td>{TimeStamp}</td>
-          </tr>
-          {/* row 2 */}
-          <tr className="hover">
-            <th>4102</th>
-            <td>BHG</td>
-            <td>Monitor am LehrerPC zerkratzt</td>
-            <td>{TimeStamp}</td>
-          </tr>
-          {/* row 3 */}
-          <tr>
-            <th>2103</th>
-            <td>MUN</td>
-            <td>LAN funktioniert nicht</td>
-            <td>{TimeStamp}</td>
-          </tr>
+          {data.map((ticket) => {
+            return tableRow(ticket);
+          })}
         </tbody>
       </table>
     </div>
+  );
+};
+
+interface tableRowProps {
+  roomNumber: number;
+  teacher: string;
+  description: string;
+  date: string;
+}
+
+const tableRow = ({
+  roomNumber,
+  teacher,
+  description,
+  date,
+}: tableRowProps) => {
+  return (
+    <tr className="hover">
+      <th>{roomNumber}</th>
+      <td>{teacher}</td>
+      <td>{description}</td>
+      <td>{date}</td>
+    </tr>
   );
 };
