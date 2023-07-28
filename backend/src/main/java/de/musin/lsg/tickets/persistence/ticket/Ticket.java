@@ -14,6 +14,7 @@ public class Ticket {
     private Long id;
     private String teacher;
     private String room;
+    @Column(length = 5000)
     private String description;
     private Date created;
     @Enumerated(value = EnumType.STRING)

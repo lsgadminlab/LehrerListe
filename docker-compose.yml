@@ -1,0 +1,34 @@
+volumes:
+  ticket-db:
+services:
+  backend:
+    image: registry.lab.lcarilla.de/lab-ticket:latest
+    container_name: ticket-backend
+    ports:
+      - "10273:8080"
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
+  pma:
+    image: phpmyadmin
+    container_name: pma
+    ports:
+      - 8000:80
+    environment:
+      - PMA_ARBITRARY=1
+  db:
+    image: mariadb
+    volumes:
+      - "ticket-db:/var/lib/mysql"
+    container_name: ticket-mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ticket
+
+    restart: always
+    entrypoint: sh -c "
+      echo 'CREATE DATABASE IF NOT EXISTS ticket;' > /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "

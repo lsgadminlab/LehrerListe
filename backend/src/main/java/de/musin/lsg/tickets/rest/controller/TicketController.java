@@ -32,4 +32,8 @@ public class TicketController {
     public Ticket putTicket(@RequestBody Ticket ticket, @PathVariable Long id){
         return ticketService.updateTicket(ticket, id);
     }
+    @GetMapping(path = "/{id}")
+    public Ticket getTicket(@PathVariable Long id){
+        return ticketService.getTicket(id);
+    }
 }

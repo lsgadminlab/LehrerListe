@@ -1,41 +1,28 @@
-"use client";
-
+import Link from "next/link";
 import ModalCreateTicket from "./components/ModalCreateTicket";
-import ModalDetailedView from "./components/ModalDetailedView";
-import { useRef } from "react";
 
-export default function Home() {
-  const modalRef: any = useRef();
-
-  const openModal = () => {
-    if (modalRef.current) {
-      modalRef.current.openModal();
-    }
-  };
-
+export default function Home(props: {
+  searchParams: Record<string, string> | null | undefined;
+}) {
   return (
     <>
-      <div className="hero bg-base-200 h-screen">
+      {props.searchParams?.modal && <ModalCreateTicket />}
+
+      <div className="hero mt-32">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Lehrer Liste</h1>
-            <p className="py-6">
+            <p className="py-6 text-2xl">
               Sie haben ein Problem gefunden und wissen nicht wie sie es lösen
               sollen. Schicken sie es doch hier ab und die Admins werden sich
               darum kümmern!
             </p>
-            <button className="btn btn-primary" onClick={() => openModal()}>
-              Neues Ticket
-            </button>
+            <Link href={"/?modal=true"}>
+              <button className="btn btn-primary btn-lg">Neues Ticket</button>
+            </Link>
           </div>
         </div>
       </div>
-      <ModalCreateTicket
-        name="Test"
-        onChange={() => {}}
-        value="Test"
-        ref={modalRef}
-      />
     </>
   );
 }

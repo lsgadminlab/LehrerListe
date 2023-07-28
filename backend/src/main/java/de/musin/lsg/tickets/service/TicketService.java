@@ -36,4 +36,9 @@ public class TicketService {
         modelMapper.map(ticket, ticketOptional.get());
         return ticketOptional.get();
     }
+    public Ticket getTicket(Long id){
+        Optional<Ticket> ticketOptional = ticketRepository.findById(id);
+        if(ticketOptional.isEmpty()) throw new TicketNotFoundException();
+        return ticketOptional.get();
+    }
 }

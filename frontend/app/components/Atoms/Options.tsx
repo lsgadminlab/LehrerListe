@@ -7,7 +7,7 @@ interface Props {
 const Options = ({ options, onChange, value }: Props) => {
   return (
     <select
-      className="select w-full max-w-xs mt-3 mb-5"
+      className="select w-full mt-3 mb-5 text-lg border-gray-700"
       onChange={(e) => {
         onChange(e.target.value);
       }}
