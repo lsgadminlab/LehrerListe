@@ -1,8 +1,8 @@
 volumes:
-  ticket-db:
+  lehrerliste-db:
 services:
   backend:
-    image: lab-ticket:latest
+    image: "registry.lab.lcarilla.de/lehrerliste-backend:latest"
     container_name: ticket-backend
     ports:
       - "10273:8080"
@@ -15,15 +15,15 @@ services:
   db:
     image: mariadb
     volumes:
-      - "ticket-db:/var/lib/mysql"
+      - "lehrerliste-db:/var/lib/mysql"
     container_name: ticket-mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ticket
+      - MYSQL_DATABASE=db
 
     restart: always
     entrypoint:
       sh -c "
-      echo 'CREATE DATABASE IF NOT EXISTS ticket;' > /docker-entrypoint-initdb.d/init.sql;
+      echo 'CREATE DATABASE IF NOT EXISTS db;' > /docker-entrypoint-initdb.d/init.sql;
       /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
       "
