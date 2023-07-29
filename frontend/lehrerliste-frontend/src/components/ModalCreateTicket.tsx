@@ -29,7 +29,7 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
             <InputField title="Raum" value={raum} onChange={setRaum} />
             <TextArea onChange={setBeschreibung} />
           </div>
-          {/* <ImageUpload onUpload={onUpload} image={bild} /> */}
+          <ImageUpload onUpload={onUpload} image={bild} />
 
           <Options
             options={["LOW", "MEDIUM", "HIGH"]}

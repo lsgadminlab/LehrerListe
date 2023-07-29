@@ -1,5 +1,3 @@
-import React from "react";
-
 interface ImageUploadProps {
   onUpload: (file: File) => void;
   image?: File;
