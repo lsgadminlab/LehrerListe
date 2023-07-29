@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import { getTicket } from "../api/tickets";
+import { Ticket } from "../types/ticket";
 import TicketButtons from "../components/TicketButtons";
 import TicketStat from "../components/TicketStat";
-import { Ticket } from "../types/ticket";
+import { getTicket } from "../api/tickets";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 const page = () => {
@@ -14,8 +14,8 @@ const page = () => {
   return (
     ticket &&
     isFetched && (
-      <>
-        <div className="stats shadow">
+      <div className="flex w-full justify-center flex-col">
+        <div className="stats stats-vertical lg:stats-horizontal shadow">
           <TicketStat title={"Raum"} value={ticket.room}></TicketStat>
           <TicketStat title={"Lehrer"} value={ticket.teacher}></TicketStat>
           <TicketStat title={"Priority"} value={ticket.priority}></TicketStat>
@@ -24,7 +24,7 @@ const page = () => {
         <p className=" p-6 text-2xl">{ticket.description}</p>
 
         <TicketButtons ticket={ticket}></TicketButtons>
-      </>
+      </div>
     )
   );
 };

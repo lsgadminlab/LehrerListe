@@ -1,11 +1,8 @@
-import axios from "axios";
 import { Ticket } from "../types/ticket";
-
-
+import axios from "axios";
 const ticketAPI = axios.create({
     baseURL: "https://admins.lab.lcarilla.de/api/v1/"
 })
-
 export const getTickets = async (): Promise<Ticket[]> => {
     return (await ticketAPI.get("tickets/")).data
 }
