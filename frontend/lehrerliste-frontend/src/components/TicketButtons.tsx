@@ -21,16 +21,16 @@ const TicketButtons = ({ ticket }: { ticket: Ticket }) => {
   return (
     <>
       <button
-        className="btn btn-primary m-3"
+        className="btn btn-primary w-11/12 m-auto my-3"
         onClick={async () => {
           await updateMutation.mutateAsync();
           queryClient.invalidateQueries(["ticket" + ticket.id]);
         }}
       >
-        {ticket.done ? "Reopen" : "Close"}
+        {ticket.done ? "Ticket Wiedereröffnen" : "Ticket Schließen"}
       </button>
       <button
-        className="btn btn-secondary m-3"
+        className="btn btn-secondary  w-11/12 m-auto my-3"
         onClick={async () => {
           await deleteMutation.mutateAsync();
           navigate(-1);

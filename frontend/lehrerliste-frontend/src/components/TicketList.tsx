@@ -5,16 +5,17 @@ import { useState } from "react";
 
 interface TicketsListProps {
   tickets: Ticket[];
+  ticketTypes: "offene" | "geschlossene";
 }
 
-export const TicketsList = ({ tickets }: TicketsListProps) => {
+export const TicketsList = ({ tickets, ticketTypes }: TicketsListProps) => {
   const [teacherFilter, setTeacherFilter] = useState("");
   const [roomFilter, setRoomFilter] = useState<string>();
   const [timeSort, setTimeSort] = useState<"asc" | "desc">("desc");
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-center">{` ${tickets.length} Tickets`}</h1>
+      <h1 className="text-3xl font-bold text-center">{` ${tickets.length} ${ticketTypes} Tickets`}</h1>
 
       <div className="form-control w-full flex flex-row justify-start ">
         <input

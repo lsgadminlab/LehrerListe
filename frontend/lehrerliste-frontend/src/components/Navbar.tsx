@@ -6,10 +6,10 @@ const NavItems = () => {
   return (
     <>
       <li>
-        <Link to={"/open"}>Open Tickets </Link>
+        <Link to={"/open"}>Offene Tickets </Link>
       </li>
       <li>
-        <Link to={"/closed"}>Closed Tickets</Link>
+        <Link to={"/closed"}>Geschlossene Tickets</Link>
       </li>
     </>
   );
@@ -45,7 +45,7 @@ export const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="btn btn-ghost normal-case text-xl">
-            lehrerliste v1
+            LehrerListe v1
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -56,7 +56,7 @@ export const Navbar = () => {
         <div className="navbar-end"></div>
       </div>
       <button
-        className="btn btn-square fixed bottom-3 right-3 btn-primary z-10"
+        className="btn btn-square fixed bottom-3 right-3 btn-primary z-10 w-20 h-20 text-4xl"
         onClick={() => setShow(true)}
       >
         +

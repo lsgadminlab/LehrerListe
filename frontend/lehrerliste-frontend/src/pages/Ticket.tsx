@@ -18,7 +18,7 @@ const page = () => {
         <div className="stats stats-vertical lg:stats-horizontal shadow">
           <TicketStat title={"Raum"} value={ticket.room}></TicketStat>
           <TicketStat title={"Lehrer"} value={ticket.teacher}></TicketStat>
-          <TicketStat title={"Priority"} value={ticket.priority}></TicketStat>
+          <TicketStat title={"Priorität"} value={ticket.priority}></TicketStat>
         </div>
 
         <p className=" p-6 text-2xl">{ticket.description}</p>

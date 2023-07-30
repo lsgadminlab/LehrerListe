@@ -12,7 +12,6 @@ const InputField = ({ title, onChange, value }: inputFieldProps) => {
       </label>
       <input
         type="text"
-        placeholder="Type here"
         className="input input-bordered w-full text-xl "
         onChange={(e) => onChange(e.target.value)}
         value={value}

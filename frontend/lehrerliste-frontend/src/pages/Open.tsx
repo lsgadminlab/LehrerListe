@@ -10,5 +10,8 @@ export default function TicketList() {
   });
   if (tickets) tickets = tickets.filter((t) => t.done == false);
 
-  return isFetched && tickets && <TicketsList tickets={tickets} />;
+  return (
+    isFetched &&
+    tickets && <TicketsList tickets={tickets} ticketTypes="offene" />
+  );
 }
