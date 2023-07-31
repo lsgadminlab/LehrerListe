@@ -12,9 +12,12 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
   const [beschreibung, setBeschreibung] = useState<string>("");
   const [priorität, setPriorität] = useState<string>("");
   const [bild, setBild] = useState<File>();
+  const [error, setError] = useState<boolean>(false);
+  const [errorText, setErrorText] = useState<string>("This is a test message");
+
   const navigate = useNavigate();
 
-  const onUpload = (file: File) => {
+  const onUpload = (file: File|undefined) => {
     console.log(file);
     setBild(file);
   };
@@ -29,9 +32,8 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
             <InputField title="Raum" value={raum} onChange={setRaum} />
             <TextArea onChange={setBeschreibung} />
           </div>
-          {/* Just for layout reasons
           <ImageUpload onUpload={onUpload} image={bild} />
-          */}
+         
           <Options
             options={["NIEDRIG", "MITTEL", "HOCH"]}
             onChange={setPriorität}
@@ -40,6 +42,7 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
           <button
             className="btn w-full btn-primary"
             onClick={async () => {
+              setError(false);
               //only send the ticket and close the modal if the teacher and the room are not empty
               if (
                 lehrer === "" ||
@@ -47,58 +50,28 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
                 beschreibung === "" ||
                 priorität === ""
               ) {
-                //display an alert if the teacher or the room are empty and tell the user which to fill out
-                let output = "";
-                let missing = [];
-                if (lehrer === "") {
-                  missing.push("das Kürzel");
-                }
-                if (raum === "") {
-                  missing.push("den Raum");
-                }
-                if (beschreibung === "") {
-                  missing.push("die Beschreibung");
-                }
-                if (priorität === "") {
-                  missing.push("die Priorität");
-                }
-                if (missing.length === 1) {
-                  output = missing[0];
-                } else if (missing.length === 2) {
-                  output = missing[0] + " und " + missing[1];
-                } else if (missing.length === 3) {
-                  output =
-                    missing[0] + ", " + missing[1] + " und " + missing[2];
-                } else if (missing.length === 4) {
-                  output =
-                    missing[0] +
-                    ", " +
-                    missing[1] +
-                    ", " +
-                    missing[2] +
-                    " und " +
-                    missing[3];
-                }
-                alert("Bitte fülle " + output + " aus!");
+                setError(true);
+                setErrorText("Bitte füllen Sie alle Felder aus");
+                return;
+              }
+              //if the description is longer than 100 words, show an error
+              if (beschreibung.split(" ").length > 100) {
+                setError(true);
+                setErrorText(`Bitte schreiben sie keinen Roman! Sie haben ${beschreibung.split(" ").length} Wörter geschrieben!`);
+                return;
+              }
+              if(beschreibung.split(" ").length < 5) {
+                setError(true);
+                setErrorText("Bitte beschreiben sie ihr Problem etwas genauer!");
+                return;
+              }
+              //if the teacher is longer than 5 characters, show an error
+              if (lehrer.length != 3) {
+                setError(true);
+                setErrorText("Bitte geben sie ein gültiges Kürzel ein!");
                 return;
               }
 
-              //if there is an image, send it to the cdn and get the url
-              // let bildUrl = "";
-              // if (bild) {
-              //   const formData = new FormData();
-              //   formData.append("file", bild);
-              //   const response = await fetch(
-              //     "https://api.lehrerliste.de/cdn",
-              //     {
-              //       method: "POST",
-              //       body: formData,
-              //     }
-              //   );
-              //   const data = await response.json();
-              //   bildUrl = data.url;
-              // }
-              //if the room is 4 characters long and the second character is not a dot, add a dot after the first character
               await createTicket({
                 id: 1,
                 teacher: lehrer,
@@ -110,14 +83,20 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
                 priority: priorität,
                 created: new Date(),
                 done: false,
+              }).catch((e) => {
+                setError(true);
+                setErrorText("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut, oder kontaktieren sie die Administratoren.");
+                throw e;
               });
               props.onHide();
-              // redirect to the ticket list
               navigate("/open");
             }}
           >
             Abschicken
           </button>
+          {error &&
+          <p className="text-red-500">{errorText}</p>
+        }
         </form>
         <form
           method="dialog"

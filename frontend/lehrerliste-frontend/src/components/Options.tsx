@@ -15,8 +15,8 @@ const Options = ({ options, onChange }: Props) => {
       <option disabled selected>
         Priorität
       </option>
-      {options.map((option) => (
-        <option value={option}>{option}</option>
+      {options.map((option,i) => (
+        <option value={option} key={i + "option"}>{option}</option>
       ))}
     </select>
   );
