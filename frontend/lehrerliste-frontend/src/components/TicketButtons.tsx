@@ -36,7 +36,7 @@ const TicketButtons = ({ ticket }: { ticket: Ticket }) => {
           navigate(-1);
         }}
       >
-        Delete
+        Löschen
       </button>
     </>
   );

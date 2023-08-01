@@ -25,17 +25,18 @@ const ModalCreateTicket = (props: { show: boolean; onHide: () => void }) => {
         <form method="dialog" className="modal-box">
           <h1 className="text-3xl font-bold">Ticket Erstellen</h1>
           <div className="form-control w-full ">
-            <InputField title="Kürzel" value={lehrer} onChange={setLehrer} />
-            <InputField title="Raum" value={raum} onChange={setRaum} />
+            <InputField title="Kürzel" value={lehrer} onChange={setLehrer} maxlength={3}/>
+            <InputField title="Raum" value={raum} onChange={setRaum} maxlength={5} />
             <TextArea onChange={setBeschreibung} />
           </div>
           {/* Just for layout reasons
           <ImageUpload onUpload={onUpload} image={bild} />
           */}
           <Options
-            options={["NIEDRIG", "MITTEL", "HOCH"]}
+            options={["LOW", "MEDIUM", "HIGH"]}
             onChange={setPriorität}
             value={priorität}
+            placeholder="Priorität"
           ></Options>
           <button
             className="btn w-full btn-primary"

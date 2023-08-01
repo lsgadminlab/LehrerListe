@@ -2,9 +2,10 @@ interface Props {
   options: string[];
   onChange: any;
   value: string;
+  placeholder: string;
 }
 
-const Options = ({ options, onChange }: Props) => {
+const Options = ({ options, onChange, placeholder }: Props) => {
   return (
     <select
       className="select w-full mt-3 mb-5 text-lg border-gray-700"
@@ -13,7 +14,7 @@ const Options = ({ options, onChange }: Props) => {
       }}
     >
       <option disabled selected>
-        Priorität
+        {placeholder}
       </option>
       {options.map((option) => (
         <option value={option}>{option}</option>

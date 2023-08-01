@@ -2,9 +2,10 @@ interface inputFieldProps {
   title: string;
   onChange: any;
   value: string;
+  maxlength?: number;
 }
 
-const InputField = ({ title, onChange, value }: inputFieldProps) => {
+const InputField = ({ title, onChange, value, maxlength }: inputFieldProps) => {
   return (
     <>
       <label className="label mt-3">
@@ -12,7 +13,8 @@ const InputField = ({ title, onChange, value }: inputFieldProps) => {
       </label>
       <input
         type="text"
-        className="input input-bordered w-full text-xl "
+        className="input input-bordered w-full text-xl uppercase"
+        maxLength={maxlength}
         onChange={(e) => onChange(e.target.value)}
         value={value}
       />
